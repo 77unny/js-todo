@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: ['./src/js/app.js'],
+    entry: ['./src/js/app.js', './src/style/common.scss'],
     output: {
         path: path.resolve(__dirname, 'src/dist'),
         filename: 'bundle.js',
@@ -23,7 +23,7 @@ module.exports = {
                 test: /\.ts$/,
                 use: ['ts-loader'],
                 exclude: /node_modules/,
-            },
+            }
         ],
     },
 };
