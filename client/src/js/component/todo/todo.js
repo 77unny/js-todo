@@ -1,4 +1,5 @@
 import './todo.scss';
+import { TodoColumn } from './column/';
 const todoTemplate = `
 <div class="todo-columns" tabindex="0">
     <div class="todo-title">
@@ -49,18 +50,18 @@ const todoTemplate = `
 </div>
 `;
 class TodoApp {
-    constructor(todo, todoColunm, data) {
+    constructor(todo, data) {
         this.todo = todo;
-        this.todoColunm = todoColunm;
         this.data = data;
         this.column = null;
         this.render();
         this.bindEventListener();
     }
     render() {
-        this.column = this.data.content;
+        this.column = this.data.content.map((value) => {
+            return new TodoColumn({ target: this.todo, id: value.id, title: value.title, cards: value.cards });
+        });
         console.log(this.column);
-        return this.todo.insertAdjacentHTML('beforeend', todoTemplate);
     }
     bindEventListener() {
         this.todo.addEventListener('click', (e) => {
