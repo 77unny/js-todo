@@ -1,7 +1,13 @@
 const tag = '[app]';
+import { MOCK_BOARD } from '../data/mock.js';
 import { getEl, insertComponents } from './utils/common';
 import { drawHeader } from './component/layout/header';
 import { drawBody } from './component/layout/body';
 import { drawFooter } from './component/layout/footer';
+import { TodoApp } from './component/todo/todo';
+import { TodoColumn } from './component/todo/column';
 const root = getEl('#wrap');
 insertComponents(root, drawHeader, drawBody, drawFooter);
+const todo = getEl('#todo-app');
+const todoColumn = new TodoColumn();
+const todoApp = new TodoApp(todo, todoColumn, MOCK_BOARD);
