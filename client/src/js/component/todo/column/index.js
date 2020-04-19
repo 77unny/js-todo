@@ -1,3 +1,4 @@
+import { TodoCard } from '../card/';
 const columnTemplate = (id, title, cards) => {
     return `
     <div class="todo-columns" tabindex="${id}">
@@ -18,20 +19,35 @@ const columnTemplate = (id, title, cards) => {
                 </div>
             </form>
         </div>
-        <div class="card-wrap">${cards}</div>
+        <div class="card-wrap"></div>
     </div>
     `;
 };
 class TodoColumn {
-    constructor({ target, id, title, cards }) {
+    constructor({ target, id, title, cards, index }) {
+        this.column = null;
+        this.cardWrap = null;
         this.target = target;
         this.id = id;
         this.title = title;
         this.cards = cards;
+        this.index = index;
         this.render();
+        this.setElements();
+        this.renderCard();
     }
     render() {
         this.target.insertAdjacentHTML('beforeend', columnTemplate(this.id, this.title, this.cards));
+    }
+    renderCard() {
+        this.cards.forEach(card => {
+            return new TodoCard(this, card);
+        });
+    }
+    setElements() {
+        debugger;
+        this.column = [...this.target.children][this.index];
+        this.cardWrap = this.column.querySelector('.card-wrap');
     }
 }
 export { TodoColumn };
