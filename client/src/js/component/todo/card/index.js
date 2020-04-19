@@ -1,3 +1,4 @@
+import './card.scss';
 const cardTemplate = ({ id, content }) => {
     return `
     <div class="card-item content-wrap" draggable="true" data-type="card" tabindex="0">

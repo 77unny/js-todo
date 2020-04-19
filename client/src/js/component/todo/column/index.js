@@ -45,7 +45,6 @@ class TodoColumn {
         });
     }
     setElements() {
-        debugger;
         this.column = [...this.target.children][this.index];
         this.cardWrap = this.column.querySelector('.card-wrap');
     }
